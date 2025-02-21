@@ -25,7 +25,7 @@ class DB
     {
         $tmp = [];
         foreach ($array as $key => $value) {
-            $tmp = "`$key`=>'$value'";
+            $tmp[] = "`$key`='$value'";
         }
         return $tmp;
     }
@@ -57,13 +57,16 @@ class DB
 
     function find($array)
     {
+        // dd($array);
         $sql = "SELECT * FROM $this->table ";
         if (is_array($array)) {
             $tmp = $this->a2s($array);
+            // echo $tmp;
             $sql .= " WHERE " . join(" && ", $tmp);
         } else {
             $sql .= " WHERE `id` = '$array'";
         }
+        // echo $sql;
         return $this->fetch_one($sql);
     }
 
@@ -118,7 +121,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=bq2";
     $pdo = new PDO($dsn, 'root', '');
-    return $pdo->query($sql)->fetch();
+    return $pdo->query($sql)->fetchColumn();
 }
 
 function dd($array)
@@ -129,9 +132,9 @@ function dd($array)
 }
 
 $User = new DB('users');
-$Article = new DB('articles');
-$Poll = new DB('poll');
-$Total = new DB('totals');
+$News = new DB('news');
+$Que = new DB('Que');
+$Total = new DB('total');
 $Like = new DB('likes');
 
 // 如果沒有這個session=新訪客
