@@ -52,6 +52,7 @@
 							echo "歡迎，" . $_SESSION['user'];
 							// 是否是管理
 							if ($_SESSION['user'] == 'admin') {
+								
 								echo "<button onclick='location.href='admin.php''>管理</button>";
 							}
 							echo "<button onclick='logout()'>登出</button>";
