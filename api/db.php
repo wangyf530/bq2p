@@ -80,9 +80,10 @@ class DB
         } else {
             //insert
             $keys = join("`,`", array_keys($array));
-            $values = join("',''", $array);
+            $values = join("','", $array);
             $sql = "INSERT INTO $this->table (`{$keys}`) VALUES ('{$values}')";
         }
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
     function del($array)

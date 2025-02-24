@@ -21,8 +21,8 @@
 
 <script>
     function forgot(){
-        let email='#email'.val();
-        $.get("./api/chk_email.php",email,function(res){
+        let email=$('#email').val();
+        $.get("./api/chk_email.php",{email},function(res){
             $("#result").html(res);
         })
     }

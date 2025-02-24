@@ -45,6 +45,8 @@
             pw2:$("#pw2").val(),
             email:$("#email").val()
         }
+        console.log(user);
+        
         if (user.acc=='' ||user.pw=='' ||user.pw2=='' ||user.email==''){
             alert("不可空白");
         } else if (user.pw!=user.pw2){
@@ -55,15 +57,17 @@
                     alert("帳號重複")
                 } else {
                     $.post("./api/reg.php",user,function(res){
+                        // console.log("reg => ",res);
                         if(parseInt(res)==1){
                             alert("註冊成功")
+                        } else {
+                            alert("almost there");
                         }
                     })
                 }
             })
         }
         resetForm();
-
     }
 
     function resetForm(){
