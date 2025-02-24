@@ -16,9 +16,10 @@ function good(id, type, user) {
 }
 
 function logout() {
-	/* $.get("api/logout.php",function(){
+	$.get("api/logout.php",function(res){
+
 		location.href='index.php';
-	}) */
-	unset($_SESSION['user']);
-	location.href = 'index.php';
+	})
+	/* unset($_SESSION['user']);
+	location.href = 'index.php'; */
 }

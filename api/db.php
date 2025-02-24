@@ -138,17 +138,13 @@ $Que = new DB('Que');
 $Total = new DB('total');
 $Like = new DB('likes');
 
-// 如果沒有這個session=新訪客
 if(!isset($_SESSION['view'])){
-    // 如果今天已經紀錄了 找到當前total數量 +1 存回去
-    if($Total->count(['date'=>date('Y-m-d')])>0){
-        $total = $Total->find(['date'=>date('Y-m-d')]);
+    if($Total->count(['date'=>date("Y-m-d")])>0){
+        $total = $Total->find(['date'=>date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     } else {
-        // 沒紀錄 新增 今天日期 total為1(第一個訪客)
-        $Total->save((['date'=>date('Y-m-d'),'total'=>1]));
+        $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
     }
-    // 設session 這樣在同一個session就不會再加total數量
     $_SESSION['view']=1;
-}
+} 

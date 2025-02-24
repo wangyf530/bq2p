@@ -41,6 +41,7 @@
             } else {
                 $.post("api/chk_pw.php",user,function(res){
                     if(parseInt(res)==1){
+                        alert("登入成功");
                         if (user.acc=='admin'){
                             location.href='admin.php';
                         } else {

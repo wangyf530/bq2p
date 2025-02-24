@@ -21,7 +21,7 @@
 	<div id="all">
 		<div id="title">
 			<?= date("m 月 d 日 l"); ?>
-			| 今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total']; ?>
+			| 今日瀏覽: <?= empty($Total->find(['date' => date("Y-m-d")])['total']) ? 0 : $Total->find(['date' => date("Y-m-d")])['total']; ?>
 			| 累積瀏覽: <?= q("SELECT SUM(`total`) FROM `total`"); ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
@@ -45,18 +45,16 @@
 					</div>
 
 					<span style="width:18%; display:inline-block; text-align:right">
-						<?php
-						if (!isset($_SESSION['user'])) {
-							echo "<a href='?do=login'>會員登入</a>";
-						} else {
-							echo "歡迎，" . $_SESSION['user'];
-							// 是否是管理
-							if ($_SESSION['user'] == 'admin') {
-								echo "<button onclick='location.href='admin.php''>管理</button>";
-							}
-							echo "<button onclick='logout()'>登出</button>";
-						}
-						?>
+						<?php if (!isset($_SESSION['user'])): ?>
+							<a href='?do=login'>會員登入</a>
+						<?php else: ?>
+							歡迎，<?= $_SESSION['user'];?>
+							<!-- 是否是管理 -->
+							<?php if($_SESSION['user'] == 'admin'): ?>
+								<button onclick="location.href='admin.php'">管理</button>
+							<?php endif; ?>
+							<button onclick='logout()'>登出</button>
+						<?php endif; ?>
 					</span>
 				</div>
 
