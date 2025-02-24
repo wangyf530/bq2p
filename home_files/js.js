@@ -16,7 +16,7 @@ function good(id, type, user) {
 }
 
 function logout() {
-	$.get("api/logout.php",function(res){
+	$.get("api/logout.php",function(){
 
 		location.href='index.php';
 	})
