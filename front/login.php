@@ -19,7 +19,7 @@
                 <input type="reset" value="清除" onclick="resetForm()">
             </td>
             <td style="text-align:right">
-                <a href="?do=forget">忘記密碼</a>
+                <a href="?do=forgot">忘記密碼</a>
                 &nbsp;| &nbsp;
                 <a href="?do=reg">尚未註冊</a>
             </td>
