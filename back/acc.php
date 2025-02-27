@@ -2,6 +2,10 @@
     .title{
         background-color: #ccc;
     }
+
+    .grey-text{
+        background-color: #eee;
+    }
 </style>
 <fieldset>
     <legend>帳號管理</legend>
@@ -31,28 +35,28 @@
     <div style="color:red">
         *請設定您要註冊的帳號及密碼（最長12個字元）
     </div>
-    <table style="width:60%">
+    <table style="width:60%" >
         <tr>
-            <td>Step1:登入帳號</td>
+            <td class='grey-text'>Step1:登入帳號</td>
             <td>
                 <input type="text" name="acc" id="acc" style="width:98%">
             </td>
 
         </tr>
         <tr>
-            <td>Step2:登入密碼</td>
+            <td class='grey-text'>Step2:登入密碼</td>
             <td>
                 <input type="password" name="pw" id="pw" style="width:98%">
             </td>
         </tr>
         <tr>
-            <td>Step3:再次確認密碼</td>
+            <td class='grey-text'>Step3:再次確認密碼</td>
             <td>
                 <input type="password" name="pw2" id="pw2" style="width:98%">
             </td>
         </tr>
         <tr>
-            <td>Step4:信箱(忘記密碼時使用)</td>
+            <td class='grey-text'>Step4:信箱(忘記密碼時使用)</td>
             <td>
                 <input type="text" name="email" id="email" style="width:98%">
             </td>
@@ -72,7 +76,7 @@
         dels.each((idx,item)=>{
             ids.push($(item).val())
         })
-        $.post("./api/del_user.php",function(){
+        $.post("./api/del_user.php",{ids},()=>{
             location.reload();
         })
     }
@@ -95,14 +99,15 @@
         } else if (user.pw!=user.pw2){
             alert("密碼錯誤")
         } else {
-            $.get("./api/chk_acc.php",{acc:user.acc},function(res){
+            $.get("./api/chk_acc.php",{acc:user.acc},(res)=>{
                 if(parseInt(res)>0){
                     alert("帳號重複")
                 } else {
                     $.post("./api/reg.php",user,function(res){
                         // console.log("reg => ",res);
                         if(parseInt(res)==1){
-                            alert("註冊成功")
+                            // alert("註冊成功")
+                            location.reload();
                         } else {
                             alert("almost there");
                         }
