@@ -116,7 +116,7 @@ class DB
 
 function to($url)
 {
-    header("location: ", $url);
+    header("location: ". $url);
 }
 
 function q($sql)
