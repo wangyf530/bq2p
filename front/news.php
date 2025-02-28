@@ -73,6 +73,8 @@
         $.post("./api/like.php", {
             id
         }, () => {
+            // console.log(res);
+            
             switch (like) {
                 case '讚':
                     $(this).text('收回讚')
